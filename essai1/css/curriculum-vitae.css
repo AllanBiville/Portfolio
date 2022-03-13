@@ -1,0 +1,32 @@
+#CV{
+	margin:30px auto 5px;
+	display:block;
+	padding:50px;
+	width:30%;
+}
+#article_cv{
+	background-color:#00DA54;
+	width:100%;
+}
+.bouton_cv{
+	display:block;
+	margin:0 auto;
+	border:2px solid black;
+	width:30%;
+	border-radius:5px;
+	text-align:center;
+	font-size:250%;
+	text-decoration:none;
+	color:white;
+	background-color: #0090FA;
+	min-width:200px;
+	border-bottom-left-radius:20px;
+	margin-bottom:15px;
+}
+.bouton_cv:hover {
+    color: #0090FA; 
+    transition-duration: 0.5s;
+    background-color:white;
+}
+
+/* COULEUR ROSE : #FF58F1 / COULEUR VERTE : #00DA54 / COULEUR BLEU : #0090FA*/ 
