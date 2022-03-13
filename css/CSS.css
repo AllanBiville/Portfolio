@@ -1,0 +1,312 @@
+/* --------------------- MENU --------------------- */
+nav{
+    width: 99%;/* Taille du menu */
+    margin: 0px auto 40px auto;/* Details du menu */
+    position:absolute;/* Position du menu */
+    background-color:grey ;/* Arrière-Plan du menu */
+}
+nav ul{
+    list-style-type: none;/* Enleve les points devant les categories de menu */
+}
+nav li{
+    float: left;/* Afficher le menu de gauche à droite (en ligne) */
+    width: 14%;/* Afficher le menu en horizontal et l'aligne selon le % donné */
+    text-align: center;/* Centrer chaque catégories dans les cases du menu */
+}
+nav a{
+    display: block;
+    text-decoration: none;
+    color: white;/* Change la couleur des catégorie du menu*/
+    border-bottom: 2px solid transparent;
+    padding: 10px 0px;
+    font-family:Blippo, fantasy; /*Police menu*/
+}
+nav a:hover{
+    color: orange;  /*Change couleur bouton et rajoute ligne gold en dessous*/
+    border-bottom: 2px solid gold;
+}
+nav ul::after{ /* Agrandi un peu le menu vers le bas */
+    content: ""; /* Agrandi un peu le menu vers le bas */
+    display: table; /* Agrandi un peu le menu vers le bas */
+    clear: both; /* Agrandi un peu le menu vers le bas */
+}
+
+/* ------------------------------------------------ */
+
+/* --------------------- Présentation de la page --------------------- */
+#titre{
+    margin:5px;
+    padding:3%;
+    color:orange;
+    text-align:center;
+    font-family: Blippo, fantasy;
+    background-color:lightgrey;
+}
+body{
+    background-color:white;/* Arrière-plan de la page */
+}
+#titrepage{
+	color:black;
+	text-align:center;
+    font-family: Blippo, fantasy;
+}
+#p{
+	color:black;
+	text-align:center;
+    font-family: 'Sansita Swashed', cursive;
+}
+/* ------------------------------------------------ */
+
+/* --------------------- Accueil (Index) --------------------- */
+#accueil-image{
+    box-shadow:0px 0px 17px #07B9CB; 
+    border: 1px solid #07B9CB;
+    padding:5px;
+    display:block;
+    clear:both;
+    margin-left:auto;
+    margin-right:auto;
+}
+/* ------------------------------------------------ */
+
+/* --------------------- CV / LettreDeMotivation --------------------- */
+ #position_cv_lettre{
+    display:block;
+    clear:both;
+    margin-left:auto;
+    margin-right:auto;
+    animation: opacite;
+    animation-delay:0;
+    animation-duration:4s;
+    animation-iteration-count:1;
+}
+@keyframes opacite{
+    From{
+    Opacity : 0;
+}
+    To{
+    Opacity : 10;
+}
+}
+/* ------------------------------------------------ */
+
+/* --------------------- Compétences(Page) --------------------- */
+.competences{
+    vertical-align: middle;
+    display: inline-block;
+}
+.imgcomp{
+    width:40%;
+    margin-left:5%;
+    animation: formeimage;
+    animation-delay:0;
+    animation-duration:20s;
+    animation-iteration-count:infinite;
+}
+.imgcomp2{
+    width:38%;
+    margin-left:15%;
+    position:absolute;
+    animation: formeimage;
+    animation-delay:0;
+    animation-duration:20s;
+    animation-iteration-count:infinite;
+}
+.compreseaux{
+    font-family: 'Sansita Swashed', cursive;
+    float:left;
+    margin-left:5%;
+}
+.compprog{
+    font-family: 'Sansita Swashed', cursive;
+    float:right;
+    margin-right:5%;
+}
+@keyframes formeimage {
+0% {
+border-radius:10% 10% 10% 10%;
+opacity:2.5;
+}
+28% {
+border-radius:25% 25% 25% 25%;
+opacity:5;
+}
+42% {
+border-radius:40% 40% 40% 40%;
+opacity:7.5;
+}
+56% {
+border-radius:50%;
+opacity:10;
+}
+70% {
+border-radius:40% 40% 40% 40%;
+opacity:7.5;
+}
+84% {
+border-radius:25% 25% 25% 25%;
+opacity:5;
+}
+100% {
+border-radius:10% 10% 10% 10%;
+opacity:2.5;
+}
+}
+/* ------------------------------------------------ */
+
+/* --------------------- Compétences Réseaux --------------------- */
+.compreseauxgauche {
+    float:left;
+    margin-left:10%;
+    border: 1px solid black; 
+    padding: 5px;
+}
+.compreseauxdroite{
+    float:right;
+    margin-right:10%;
+    border: 1px solid black; 
+    padding: 5px;
+}
+.policecompreseaux{
+    font-family: 'Sansita Swashed', cursive;
+}
+/* ------------------------------------------------ */
+
+/* --------------------- Contact --------------------- */
+/*CSS CONTACT INTEGRE A LA PAGE CONTACT*/
+/* ------------------------------------------------ */
+
+/* --------------------- Chargement page --------------------- */
+.chargement{
+    border-top:10px solid lightblue;
+    border-bottom:10px solid indianred;
+    border-left:10px solid gold;
+    border-right:10px solid lime;
+    border-radius:50%;
+    width:100px;
+    height:100px;
+    animation: spin linear 1;
+    margin:auto;
+    position: absolute;
+    top:0; left:0; right:0; bottom:0;
+    animation-duration:4s;
+    animation-iteration-count:1;
+    opacity:0;
+}
+@keyframes spin{
+    0%{
+        transform:rotate(0deg);
+        opacity:100;
+    }
+    20%{
+        transform:rotate(100deg);
+    }
+    50%{
+        transform:rotate(1000deg);
+    }
+    60%{
+        opacity:100;
+        transform:rotate(2000deg);
+    }
+    100%{
+        transform:rotate(5000deg);
+        opacity:0;
+    }
+}
+.chargementpage{
+    animation:chargementpage;
+    animation-delay:1;
+    animation-duration:5s;
+    animation-iteration-count:1;
+}
+@keyframes chargementpage{
+    0%{
+    opacity : 0;
+}
+    80%{
+    opacity : 0;
+}
+    100%{
+    opacity:100;
+    }
+}
+/* ------------------------------------------------ */
+
+/* --------------------- Documentation(page) --------------------- */
+.docuimage {
+    margin-left:10%;
+    border: 1px solid black; 
+    padding: 5px;
+    animation: formeimagedocu;
+    animation-delay:0;
+    animation-duration:20s;
+    animation-iteration-count:infinite;
+    border:3px solid orange;
+}
+@keyframes formeimagedocu {
+0% {
+border-radius:10% 10% 10% 10%;
+opacity:2.5;
+}
+28% {
+border-radius:25% 25% 25% 25%;
+opacity:5;
+}
+42% {
+border-radius:40% 40% 40% 40%;
+opacity:7.5;
+}
+56% {
+border-radius:50%;
+opacity:10;
+}
+70% {
+border-radius:40% 40% 40% 40%;
+opacity:7.5;
+}
+84% {
+border-radius:25% 25% 25% 25%;
+opacity:5;
+}
+100% {
+border-radius:10% 10% 10% 10%;
+opacity:2.5;
+}
+}
+.docutexte{
+    float:right;
+    margin-right:10%;
+    border: 1px solid black; 
+    padding: 5px;
+    font-family: 'Sansita Swashed', cursive;
+}
+.boutondocu{
+    width:85px;
+    height:85px;
+    background:orange;
+    font: 15px Blippo, fantasy;
+    border-radius:50%;
+    border:none;
+    color:white;
+}
+
+/* ------------------------------------------------ */
+
+#documentationpdf{
+    display:block;
+    clear:both;
+    margin-left:auto;
+    margin-right:auto;
+    animation: opacite;
+    animation-delay:0;
+    animation-duration:4s;
+    animation-iteration-count:1;
+}
+@keyframes opacite{
+    From{
+    Opacity : 0;
+}
+    To{
+    Opacity : 10;
+}
+}
