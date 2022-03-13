@@ -117,7 +117,7 @@ nav a{
 .nav_class .icon {
   display: none;
 }
-@media screen and (max-width: 1475px) {
+@media screen and (max-width: 1480px) {
   .nav_class a {display: none;}
   .nav_class a.icon {
     float: right;
@@ -126,7 +126,7 @@ nav a{
     
   }
 }
-@media screen and (max-width: 1475px) {
+@media screen and (max-width: 1480px) {
   .nav_class.responsive {
     position: absolute;
     top:0; right:-20px;
