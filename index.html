@@ -1,36 +1,301 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Allan BIVILLE</title>
 
-  <link rel="stylesheet" href="css/style.css?v=2"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-  <link rel="shortcut icon" href="images/favicon.ico"/>
+  <link rel="stylesheet" href="css/style.css?v=2" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="shortcut icon" href="images/favicon.ico" />
   <script src="https://kit.fontawesome.com/36d8ba31b1.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <script src="https://rendro.github.io/easy-pie-chart/javascripts/jquery.easy-pie-chart.js"></script>
 </head>
-<body>
-    <div class="conteneur_header">
-      <header>
-        <div class="navigation">
-          <a class="navigation_logo" href="index.html">Allan BIVILLE</a>
-            <span>
-              <nav id="nav_id" class="nav_class">
-                <a onclick="myFunction_FermerMenuQuandClique()" class="navigation_lien" href="index.html#presentation">Présentation</a>
-                <a onclick="myFunction_FermerMenuQuandClique()" class="navigation_lien" href="index.html#competences">Compétences</a>
-                <a onclick="myFunction_FermerMenuQuandClique()" class="navigation_lien" href="index.html#projets">Projets</a>
-                <a onclick="myFunction_FermerMenuQuandClique()" class="navigation_lien" href="index.html#documentation">Documentations</a>
-                <a onclick="myFunction_FermerMenuQuandClique()" class="navigation_lien" href="index.html#veille">Veille</a>
-                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                  <i class="fa fa-bars"></i>
-                </a>
-            </nav>
-          </span>
-        </div>
-    </header>
-      <div class="header_texteonimage">
-        <img src="images/header.jpg" class="header_img"/>
-        <h2 class="header_texteonimage_text">Portfolio<br/>Allan BIVILLE<br/>✌ Developpeur Web ✌</h2>
+
+<body id="home">
+  <div class="conteneur_header">
+    <header>
+      <div class="navigation">
+        <a class="navigation_logo" href="index.html#home">Allan BIVILLE</a>
+        <span>
+          <nav id="nav_id" class="nav_class">
+            <a onclick="myFunction_FermerMenuQuandClique()" class="navigation_lien"
+              href="index.html#presentation">Présentation</a>
+            <a onclick="myFunction_FermerMenuQuandClique()" class="navigation_lien"
+              href="index.html#competences">Compétences</a>
+            <a onclick="myFunction_FermerMenuQuandClique()" class="navigation_lien"
+              href="index.html#projets">Projets</a>
+            <a onclick="myFunction_FermerMenuQuandClique()" class="navigation_lien"
+              href="index.html#documentation">Documentations</a>
+            <a onclick="myFunction_FermerMenuQuandClique()" class="navigation_lien" href="index.html#veille">Veille</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+              <i class="fa fa-bars"></i>
+            </a>
+          </nav>
+        </span>
       </div>
+    </header>
+    <div class="header_texteonimage">
+      <div style="background-image: url('images/header.jpg')" class="header_img"></div>
+      <h2 class="header_texteonimage_text">Portfolio<br />Allan BIVILLE<br />✌ Developpeur Web ✌</h2>
     </div>
+  </div>
+  <main>
+    <span id="presentation"><br /><br /><br /><br /></span>
+    <section class="conteneur reveal">
+      <h1 class="TitreRubrique"><i class="fas fa-child"></i><br />Présentation</h1>
+      <img id="presentation-titre-image" src="images/homme.png" />
+      <p class="presentation-description">
+        Bienvenue sur le <em>portfolio de Allan BIVILLE</em>,
+        actuellement <em>étudiant</em> en deuxième année
+        d’un brevet de technicien supérieur <em>SIO
+          (Services Informatiques aux Organisation)</em>
+        au sein de l’établissement <em>Notre Dame De La Providence à Avranches.</em>
+        <br />
+        Ayant <em>
+          <script type="text/javascript">
+            function getAge(date) {
+              var diff = Date.now() - date.getTime();
+              var age = new Date(diff);
+              return Math.abs(age.getUTCFullYear() - 1970);
+            }
+            document.write(getAge(new Date(2002, 12, 25))); //Date(année, mois, jour)   
+          </script>
+          ans
+        </em> et obtenu mon baccalauréat professionnel
+        <em>Systèmes Numériques avec l’option RISC
+          (Réseaux Informatiques et Systèmes Communicants),</em>
+        dans l’établissement <em>La Providence à Saint-Malo</em>;
+        j’ai décidé de poursuivre mes études vers un brevet
+        de technicien supérieur pour y découvrir
+        et acquérir des compétences ainsi que des bases dans le développement,
+        le réseau, l’informatique, etc…
+      </p>
+      <a target="_blank"
+        href="https://www.canva.com/design/DAEaV_ZgKoA/sGRH3_wT815hWigkPrTSXw/view?utm_content=DAEaV_ZgKoA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+        type="button" class="presentation-bouton"><i style="color:white; font-size:30px; vertical-align: middle;"
+          class="fas fa-file"></i> Mon CV</a>
+      <br /><br />
+      <a target="_blank" href="https://github.com/AllanBiville" type="button" class="presentation-bouton"><i
+          style="color:white; font-size:30px; vertical-align: middle;" class="fab fa-github"></i> Profil GitHub</a>
+    </section>
+    <span id="competences"><br /><br /><br /><br /></span>
+    <section class="conteneur reveal">
+      <h1 class="TitreRubrique"><i class="fas fa-book-open"></i><br />Compétences</h1>
+
+      <br /><br />
+      <h1>Langages de programmation</h1>
+      <div class="panel">
+
+        <div class="chart">
+          <div class="percentage" data-percent="75">
+            <span>75</span><sup>%</sup>
+          </div>
+          <div class="label">Symfony (Framework PHP)</div>
+          <img style="height:65px;" src="images/symfony.png" />
+        </div>
+
+        <div class="chart">
+          <div class="percentage" data-percent="75">
+            <span>75</span><sup>%</sup>
+          </div>
+          <div class="label">PHP procédurale (PHP)</div>
+          <img style="height:65px;" src="images/php.jpg" />
+        </div>
+
+
+        <div class="chart">
+          <div class="percentage" data-percent="50">
+            <span>50</span><sup>%</sup>
+          </div>
+          <div class="label">PHP orientée objet (PHP POO)</div>
+          <img style="height:65px;" src="images/php.jpg" />
+        </div>
+
+        <div class="chart">
+          <div class="percentage" data-percent="20">
+            <span>20</span><sup>%</sup>
+          </div>
+          <div class="label">CSharp (C#)</div>
+          <img style="height:65px;" src="images/csharp.png" />
+        </div>
+
+
+        <div class="chart">
+          <div class="percentage" data-percent="60">
+            <span>60</span><sup>%</sup>
+          </div>
+          <div class="label">SQL</div>
+          <img style="height:65px;" src="images/sql.png" />
+        </div>
+
+        <div class="chart">
+          <div class="percentage" data-percent="25">
+            <span>25</span><sup>%</sup>
+          </div>
+          <div class="label">JavaScript (JS)</div>
+          <img style="height:65px;" src="images/javascript.jpg" />
+        </div>
+
+
+        <div class="chart">
+          <div class="percentage" data-percent="60">
+            <span>60</span><sup>%</sup>
+          </div>
+          <div class="label">Python - algorithmes mathématiques</div>
+          <img style="height:65px;" src="images/python.png" />
+        </div>
+
+        <div class="chart">
+          <div class="percentage" data-percent="90">
+            <span>90</span><sup>%</sup>
+          </div>
+          <div class="label">HTML</div>
+          <img style="height:65px;" src="images/html.png" />
+        </div>
+
+
+        <div class="chart">
+          <div class="percentage" data-percent="80">
+            <span>80</span><sup>%</sup>
+          </div>
+          <div class="label">CSS</div>
+          <img style="height:65px;" src="images/css.png" />
+        </div>
+
+      </div>
+
+
+
+      <br /><br />
+      <h1>Logiciels / Applications utilisés</h1>
+      <div class="grid-logiciels">
+        <div class="grid-items">
+          <img src="images/vscode.png" />
+          <span class="grid-label">Visual Studio Code</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/composer.png" />
+          <span class="grid-label">Composer</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/putty.png" />
+          <span class="grid-label">Putty</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/heidisql.jpg" />
+          <span class="grid-label">HeidiSQL</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/looping.png" />
+          <span class="grid-label">Looping</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/wamp.png" />
+          <span class="grid-label">WAMP</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/glpi.jpg" />
+          <span class="grid-label">GLPI</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/vs.jpg" />
+          <span class="grid-label">Visual Studio</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/androidstudio.png" />
+          <span class="grid-label">Android Studio</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/git.png" />
+          <span class="grid-label">Git</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/github.png" />
+          <span class="grid-label">GitHub</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/virtualbox.jpg" />
+          <span class="grid-label">VirtualBox</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/ciscopackettracer.png" />
+          <span class="grid-label">Cisco Packet Tracer</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/proxmox.png" />
+          <span class="grid-label">Proxmox</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/phpmyadmin.png" />
+          <span class="grid-label">PhpMyAdmin</span>
+        </div>
+      </div>
+      <br /><br />
+      <h1>Utilitaires développement</h1>
+      <div class="grid-logiciels">
+        <div class="grid-items">
+          <img src="images/bootstrap.png" />
+          <span class="grid-label">Bootstrap</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/fontawesome.png" />
+          <span class="grid-label">Font Awesome</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/googlefonts.jpg" />
+          <span class="grid-label">Google Fonts</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/animatecss.jpg" />
+          <span class="grid-label">Animate.css</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/animatecss.jpg" />
+          <span class="grid-label">Animate.css</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/jquery.png" />
+          <span class="grid-label">JQuery</span>
+        </div>
+      </div>
+
+      <br /><br />
+      <h1>Systèmes d'exploitations</h1>
+      <div class="grid-logiciels">
+        <div class="grid-items">
+          <img src="images/windows.png" />
+          <span class="grid-label">Windows</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/debian.png" />
+          <span class="grid-label">Debian</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/lubuntu.png" />
+          <span class="grid-label">Lubuntu</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/kalilinux.png" />
+          <span class="grid-label">Kali-Linux</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <footer>
+    <a href="index.html#home"><i class="fas fa-arrow-circle-up"></i></a>
+    <h1>Portfolio <br />Allan BIVILLE</h1>
+    <p>Copyright © Tout droits réservés</p>
+  </footer>
+  <!--| JavaScript |-->
+  <script src="javascript/hamburger.js"></script>
+  <script src="javascript/scroll-reveal.js"></script>
+  <script src="javascript/competences-graph.js"></script>
+
+</body>
+
+</html>
