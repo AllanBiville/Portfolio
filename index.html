@@ -19,18 +19,18 @@
   <div class="conteneur_header">
     <header>
       <div class="navigation">
-        <a class="navigation_logo" href="index.html#home">Allan BIVILLE</a>
+        <a class="navigation_logo" href="#home">Allan BIVILLE</a>
         <span>
           <nav id="nav_id" class="nav_class">
             <a onclick="myFunction_FermerMenuQuandClique()" class="navigation_lien"
-              href="index.html#presentation">Présentation</a>
+              href="#presentation">Présentation</a>
             <a onclick="myFunction_FermerMenuQuandClique()" class="navigation_lien"
-              href="index.html#competences">Compétences</a>
+              href="#competences">Compétences</a>
             <a onclick="myFunction_FermerMenuQuandClique()" class="navigation_lien"
-              href="index.html#projets">Projets</a>
+              href="#projets">Projets</a>
             <a onclick="myFunction_FermerMenuQuandClique()" class="navigation_lien"
-              href="index.html#documentation">Documentations</a>
-            <a onclick="myFunction_FermerMenuQuandClique()" class="navigation_lien" href="index.html#veille">Veille</a>
+              href="#documentation">Documentations</a>
+            <a onclick="myFunction_FermerMenuQuandClique()" class="navigation_lien" href="#veille">Veille</a>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
               <i class="fa fa-bars"></i>
             </a>
@@ -40,7 +40,7 @@
     </header>
     <div class="header_texteonimage">
       <div style="background-image: url('images/header.jpg')" class="header_img"></div>
-      <h2 class="header_texteonimage_text">Portfolio<br />Allan BIVILLE<br />✌ Developpeur Web ✌</h2>
+      <h2 class="header_texteonimage_text">Portfolio<br />Allan BIVILLE<br />✌ Developpeur web ✌</h2>
     </div>
   </div>
   <main>
@@ -81,13 +81,27 @@
       <br /><br />
       <a target="_blank" href="https://github.com/AllanBiville" type="button" class="presentation-bouton"><i
           style="color:white; font-size:30px; vertical-align: middle;" class="fab fa-github"></i> Profil GitHub</a>
+            <br /><br /><br /><br />
+            <h1>Certifications</h1>
+
+            <a target="_blank" href="https://www.root-me.org/Allan-120767" type="button" class="presentation-bouton"><img src="images/rootme.png"
+              style="width:23px; vertical-align: middle;"></i> Profil Rootme</a> 
+              <br /><br />
+              <a target="_blank" href="https://www.credly.com/users/allan-biville/badges" type="button" class="presentation-bouton"><i
+                style="color:white; font-size:30px; vertical-align: middle;" class="fas fa-certificate"></i> Badges AWS Academy</a>     
+                <br /><br />
+                <a target="_blank" href="documents/CertifPIX_Allan-Biville.pdf" type="button" class="presentation-bouton"><i
+                  style="color:white; font-size:30px; vertical-align: middle;" class="fas fa-file-pdf"></i> Certification PIX</a>      
+                  <br /><br />
+                  <a target="_blank" href="documents/CertifMOOC_Allan-Biville.pdf" type="button" class="presentation-bouton"><i
+                    style="color:white; font-size:30px; vertical-align: middle;" class="fas fa-file-pdf"></i> Certification MOOC de l'ANSSI</a>   
     </section>
     <span id="competences"><br /><br /><br /><br /></span>
     <section class="conteneur reveal">
       <h1 class="TitreRubrique"><i class="fas fa-book-open"></i><br />Compétences</h1>
 
       <br /><br />
-      <h1>Langages de programmation</h1>
+      <h1>Langages de programmation / Frameworks</h1>
       <div class="panel">
 
         <div class="chart">
@@ -116,8 +130,8 @@
         </div>
 
         <div class="chart">
-          <div class="percentage" data-percent="20">
-            <span>20</span><sup>%</sup>
+          <div class="percentage" data-percent="10">
+            <span>10</span><sup>%</sup>
           </div>
           <div class="label">CSharp (C#)</div>
           <img style="height:65px;" src="images/csharp.png" />
@@ -133,8 +147,8 @@
         </div>
 
         <div class="chart">
-          <div class="percentage" data-percent="25">
-            <span>25</span><sup>%</sup>
+          <div class="percentage" data-percent="15">
+            <span>15</span><sup>%</sup>
           </div>
           <div class="label">JavaScript (JS)</div>
           <img style="height:65px;" src="images/javascript.jpg" />
@@ -171,7 +185,7 @@
 
 
       <br /><br />
-      <h1>Logiciels / Applications utilisés</h1>
+      <h1>Logiciels et applications utilisés</h1>
       <div class="grid-logiciels">
         <div class="grid-items">
           <img src="images/vscode.png" />
@@ -233,6 +247,30 @@
           <img src="images/phpmyadmin.png" />
           <span class="grid-label">PhpMyAdmin</span>
         </div>
+        <div class="grid-items">
+          <img src="images/googlesuite.jpg" />
+          <span class="grid-label">Suite Google</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/docker.png" />
+          <span class="grid-label">Docker</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/filezilla.png" />
+          <span class="grid-label">FileZilla</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/winscp.png" />
+          <span class="grid-label">WinSCP</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/trello.png" />
+          <span class="grid-label">Trello</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/codepen.png" />
+          <span class="grid-label">CodePen</span>
+        </div>
       </div>
       <br /><br />
       <h1>Utilitaires développement</h1>
@@ -254,12 +292,8 @@
           <span class="grid-label">Animate.css</span>
         </div>
         <div class="grid-items">
-          <img src="images/animatecss.jpg" />
-          <span class="grid-label">Animate.css</span>
-        </div>
-        <div class="grid-items">
-          <img src="images/jquery.png" />
-          <span class="grid-label">JQuery</span>
+          <img src="images/easypiechart.png" />
+          <span class="grid-label">JQuery Easy Pie Chart</span>
         </div>
       </div>
 
@@ -283,13 +317,111 @@
           <span class="grid-label">Kali-Linux</span>
         </div>
       </div>
+
+      <br /><br />
+      <h1>Méthodes de developpement utilisés</h1>
+      <div class="grid-logiciels">
+        <div class="grid-items">
+          <img src="images/methode-agile.jpg" />
+          <span class="grid-label">Méthode Agile</span>
+        </div>
+        <div class="grid-items">
+          <img src="images/devops.png" />
+          <span class="grid-label">DevOps</span>
+        </div>
+      </div>
     </section>
 
-  </main>
+    <span id="projets"><br/><br/><br/><br/></span>
+<section class="conteneur reveal">
+  <h1 class="TitreRubrique"><i class="fas fa-tasks"></i><br/>Projets</h1>
+  <div class="projets">  
+    <h1>Emploi du temps HTML</h1>
+    <a href="projets/emploi-du-temps.html" target="_blank">
+    <img class="projets-image" src="images/projets/edt.png">
+    </a>
+</div>
+<br/><br/>
+<div class="projets">  
+  <h1>Casse-brique JavaScript</h1>
+  <a href="projets/casse-brique.html" target="_blank">
+  <img class="projets-image" src="images/projets/cb.png">
+  </a>
+</div>
+<br/><br/>
+<div class="projets">  
+  <h1>Site web Vitotel</h1>
+  <a href="projets/vitotel/index.html" target="_blank">
+  <img class="projets-image" src="images/projets/vitotel.png">
+  </a>
+</div>
+<br/><br/>
+<div class="projets">  
+  <h1>Intranet APAEIA</h1>
+  <a href="projets/apaeia/index.php" target="_blank">
+  <img class="projets-image" src="images/projets/apaeia.png">
+  </a><br/>
+  <a target="_blank" type="button" class="projets-bouton" href="https://docs.google.com/document/d/1VqLaJo0amkRZ59FRvjcIL0jjOdXzsK49X_X0E1yxwIM/edit?usp=sharing"><i class="fas fa-book"></i> Documentations Technique</a>
+  <a target="_blank" type="button" class="projets-bouton" href="https://docs.google.com/document/d/1J45vOBnCVOw279oP22MAeJOMb6dlHaYUg9Qr__D0sB8/edit?usp=sharing"><i class="fas fa-book"></i> Documentations Utilisateur</a>
+</div>
+<br/><br/>
+<div class="projets">  
+  <h1>Application web pour La Maison Du Smartphone (sous Symfony 5) réalisés avec <a target="_blank" href="https://zacharyhuguet.alwaysdata.net">Zachary Huguet</a>.</h1>
+  <a href="https://www.la-maison-du-smartphone.fr" target="_blank">
+  <img class="projets-image" src="images/projets/lmds.png">
+  </a><br/>
+  <a target="_blank" type="button" class="projets-bouton" href="https://docs.google.com/document/d/1aBk3W_ZD-e-Q_Ug8LIcg-n-R0O7wbXEQBNfUCnlB0Oc/edit?usp=sharing"><i class="fas fa-book"></i> Cahier des charges</a>
+  <a target="_blank" type="button" class="projets-bouton" href="https://docs.google.com/document/d/1boHr8YNoc0Nyg8tmX5Oc8sPdraNeJMNFEDO6OJGve4M/edit?usp=sharing"><i class="fas fa-book"></i> Documentations Technique</a>
+  <a target="_blank" type="button" class="projets-bouton" href="https://docs.google.com/document/d/1Vp1fU7QAwiYlvnm_SY8hJVz4JdwS4DDaUSCES9r-89I/edit?usp=sharing"><i class="fas fa-book"></i> Documentations Utilisateur</a>
+</div>
+<br/><br/>
+<div class="projets">  
+  <h1>Application web pour notre lycée (sous Symfony 5) réalisés avec 
+    <a target="_blank" href="https://zacharyhuguet.alwaysdata.net">Zachary Huguet</a>, 
+    <a target="_blank" href="https://hugo-jenouvrier.alwaysdata.net/">Hugo Jenouvrier</a> et
+    <a target="_blank" href="">Evan BLIER</a>.
+  </h1>
+  <a href="https://feedback.ndlpavranches.fr/" target="_blank">
+  <img class="projets-image" src="images/projets/feedback.png">
+  </a><br/>
+  <a target="_blank" type="button" class="projets-bouton" href="https://docs.google.com/document/d/1IP6EeI6BotLYVhdn5D30xjHvU0lXrG6yw8V1OOk-59k/edit?usp=sharing"><i class="fas fa-book"></i> Cahier des charges</a>
+  <a target="_blank" type="button" class="projets-bouton" href="https://docs.google.com/document/d/1B_axhCQpEKUfYy7qymip0U5c7XRh-qHqVtXn_4rTBxQ/edit?usp=sharing"><i class="fas fa-book"></i> Documentations Technique</a>
+  <a target="_blank" type="button" class="projets-bouton" href="https://docs.google.com/document/d/1UB0Zg6-9zdDZTkM_Rf6Vy0OQ-VrKHsCvBhtTQjP83N4/edit?usp=sharing"><i class="fas fa-book"></i> Documentations Utilisateur</a>
+</div>
+</section>
+
+<span id="documentation"><br/><br/><br/><br/></span>
+<section class="conteneur reveal">
+  <h1 class="TitreRubrique"><i class="fas fa-file-word"></i><br/>Documentation</h1>
+
+  <div class="serviceBox">
+    <div class="service-icon">
+      <i class="fa fas fa-book"></i>
+    </div>
+    <div class="service-content">
+        <h3 class="title">Documentations</h3>
+        <p class="description">
+        Toutes les documentations sont ici.</p>
+        </p>
+        <a class="fleche_go_doc" href="documentations.html"><i class="fas fa-arrow-right"></i></a>
+      </div>
+</div>
+</section>
+<span id="veille"><br/><br/><br/><br/></span>
+
+<section class="conteneur reveal">
+<h1 class="TitreRubrique"><i class="fas fa-envelope-open-text"></i><br/>Veille<br/>Technologique</h1>
+  <p>Sujet : Les Failles Webs</p>
+  <br/><a target="_blank" href="veille.php" type="button" class="presentation-bouton">Voir le contenu de la veille</a>
+  <br/><br/><br/><br/><br/><br/><br/>
+</section>
+</main>
   <footer>
     <a href="index.html#home"><i class="fas fa-arrow-circle-up"></i></a>
     <h1>Portfolio <br />Allan BIVILLE</h1>
+    <a href="mentions-legales.html">Mentions légales</a>
     <p>Copyright © Tout droits réservés</p>
+    
   </footer>
   <!--| JavaScript |-->
   <script src="javascript/hamburger.js"></script>

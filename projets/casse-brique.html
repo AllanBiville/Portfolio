@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Casse - Brique</title>
+<script>
+var canvas1	= null;	// écran
+var ctx1	= null;	// écran
+var timer1	= null;	// timer frames
+{//INit
+function	body_onLoad()	{
+//  
+// Initialiser les données du programme
+// Appelé 1 seule fois au début du prog (onload)
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	canvas1 = document.getElementById('canvas1');
+	ctx1    = canvas1.getContext('2d');
+	// canvas1.addEventListener('mousemove', canvas1_MouseMove, false);
+	canvas1.addEventListener('click', canvas1_MouseClick, false);
+	//--Clavier
+
+	document.onkeydown = body_OnKeyDown;
+	document.onkeyup   = body_OnKeyUp;
+
+	LeftIsOn  = false ; //indicateur de touches enfoncées
+	RightIsOn = false ; 
+	Phase ='Init';
+	start();	// Timer
+}
+}
+{// stop et start
+function	start()	{ 
+	if (timer1 == null)
+	timer1 = setInterval('drawFrame()', 1000/30); // timer
+}
+function	stop()	{
+	if (timer1 != null)
+	{
+		clearInterval(timer1);
+		timer1=null; // est arrété
+	}
+}
+}
+{// gere le canvas
+function	numtocolor	( num )	{
+//
+// Renvoyer la string associée au numéro de couleur
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	switch ( num )
+	{	case 0  : return 'black'	;
+		case 1  : return 'blue'		;
+		case 2  : return 'red'		;
+		case 3  : return 'lime'		;
+		case 4  : return 'white'	;
+		case 5  : return 'yellow'	;
+		case 6  : return 'aqua'		;
+		case 7  : return 'purple'	;
+		case 8  : return 'green'	;
+		case 9  : return 'red'	;
+		case 10  : return 'brown'	;
+		default : return 'pink'		;
+	}
+}// -------------------------------------------------------
+function	effacer		()				{
+//
+// Effacer le canvas couleur blanche
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  ctx1.beginPath();
+  ctx1.fillStyle = 'yellow';
+  ctx1.fillRect(0,0,ctx1.canvas.width, ctx1.canvas.height);
+  ctx1.closePath();
+}// -------------------------------------------------------
+function	cercle		(x,y,r,col)		{     
+//
+// Tracer un cercle
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	ctx1.beginPath();
+	ctx1.arc(x, y, r, 0, 2 * Math.PI, false);
+	ctx1.fillStyle = col; // Remplissage
+	ctx1.fill();               // Tracer Remplissage
+	ctx1.lineWidth = 1;
+	ctx1.strokeStyle = 'red';
+	ctx1.stroke(); // Tracer contour
+	ctx1.closePath();
+}// -------------------------------------------------------
+function	rectangle	(x,y,dx,dy,col) {
+//
+// Tracer un rectangle
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	ctx1.beginPath();
+    ctx1.fillStyle = col ; 
+	ctx1.rect(x, y, dx, dy);
+	ctx1.fill();
+	ctx1.lineWidth = 1;
+	ctx1.strokeStyle = 'red';
+	ctx1.stroke(); 
+	ctx1.closePath();
+}
+function	texte	(texte,x,y,col) {
+	ctx1.font="40px Arial";
+	ctx1.fillStyle = col;
+	ctx1.strokeStyle = 'red';
+	ctx1.fillText(texte, x, y);
+	ctx1.strokeText(texte, x, y);
+}
+}
+{//Gerer le clavier
+	var VK_LEFT = 37 , VK_RIGHT = 39, VK_PAUSE =19, VK_SPACE =32 ; 
+
+	var LeftIsOn  = false ; //indicateur de touches enfoncées
+	var RightIsOn = false ; 
+function body_OnKeyDown(event){
+	//
+	//Evemenet KeyDown sur la page
+	//----------------------------------
+	document.title = event.keyCode;
+	switch (event.keyCode)
+	{
+		case VK_LEFT  : LeftIsOn  = true ; break ;
+		case VK_RIGHT : RightIsOn = true ; break ;
+		case VK_PAUSE :    
+		switch (Phase){
+					case 'Jeu' 	   : Phase = 'Pause'; break;
+					case 'Pause'   : Phase = 'Jeu';   break;
+}
+break ;         
+		case VK_SPACE :  
+		switch (Phase){
+
+		
+		case 'Attente' : Phase = 'Jeu';   break;
+		//case 'Jeu' 	   : Phase = 'Pause'; break;
+		//case 'Pause'   : Phase = 'Jeu';   break;
+		case 'Perdu'   : 
+		case 'Gagné'   : Phase = 'Init';  break;
+		
+		}
+		break ;
+	}
+	//Ne pas sortie la raquete de care
+	if(  laRaquette.posX < 5   )	laRaquette.posX = 5 ;
+    if(  (laRaquette.posX+laRaquette.sizeX) > 400-5 )
+	laRaquette.posX = 400-5-laRaquette.sizeX ;
+}//-----------------------------------------
+function body_OnKeyUp(event){
+	//
+	//Evemenet KeyDown sur la page
+	//----------------------------------
+	
+	switch (event.keyCode)
+	{
+		case VK_LEFT  : LeftIsOn  = false ; break ;
+		case VK_RIGHT : RightIsOn = false ; break ;
+		case VK_PAUSE :					   break ;
+		case VK_SPACE :break ;
+		
+	}
+	
+}//-----------------------------------------
+}
+{//Gerer le monde
+var Phase = null;
+function	creerLeMonde		()			{
+//
+//  Créer tous les objets du monde
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  
+  creerLesBilles();
+  creerLesBriques();
+  creerLesBonus();
+  laRaquette = creerUneRaquette();
+  
+  
+}
+function	TracerLeMonde		()			{
+	itererClavier ();
+	effacer();
+	tracerLesBriques();
+	tracerUneRaquette(laRaquette);
+	tracerLesBilles();
+	tracerLesBonus();
+	
+}
+}
+{// Gerer les billes 
+var nbrBilles = 15 ;		// Nombre de Billes
+var tabBilles = null ;	// tableau des <nbrBilles> billes
+function	creerLesBilles		()			{
+//
+//  Créer tous les objets BILLES du monde
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  tabBilles = new Array();	// nouveau tableau pour les billes
+
+  for( var i = 0  ;  i < nbrBilles  ;  i++  )	// créer toutes
+	tabBilles[i] = creerUneBille() ;			// les billes
+}// -------------------------------------------------------
+function	creerUneBille		()			{
+//
+//  Créer et Renvoyer une nouvelle bille
+//  Initilisée aléatoirement
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+var obj = new Object();			// allouer un nouvel objet
+	obj.posX =  50 + Math.random() * 300 ;	// position
+	obj.posY = 200 + Math.random() *  50 ;
+	obj.vitX = -5 + Math.random() * 10 ;	// vitesse
+	obj.vitY = -3 - Math.random() *  3 ;
+	obj.rayon=  5 + Math.random() * 15 ;	// rayon
+	obj.rayon=  5 ;	// rayon
+	obj.color=  Math.floor(Math.random()*8) ;	// num couleur
+	obj.color=  numtocolor(obj.color);			// string color
+	obj.actif=true;
+	return obj ;
+}// -------------------------------------------------------
+function	miseAJourUneBille	( bille )	{
+//
+//  Mettre à jour la <bille> : position vitesse ...
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	if ( ! bille.actif) return;
+	//--- Mettre à jour la position
+	bille.posX = bille.posX + bille.vitX ;
+	bille.posY = bille.posY + bille.vitY ;
+
+	//--- Detecter la sortie du cadre
+	if (bille.posX+bille.rayon >= canvas1.width )	
+		bille.vitX = -bille.vitX ;
+	if (bille.posY+bille.rayon >= canvas1.height+25)	
+		//bille.vitY = -bille.vitY ;
+		bille.actif = false;
+	if (bille.posX-bille.rayon <= 0) 				
+		bille.vitX = -bille.vitX ;
+	if (bille.posY-bille.rayon <= 0) 				
+		bille.vitY = -bille.vitY ;
+}// -------------------------------------------------------
+function	miseAJourLesBilles	()			{
+//
+//  Mettre à jour de toutes les billes : position vitesse ...
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  for( var i = 0  ;  i < nbrBilles  ;  i++  )	// pour toutes les billes
+	miseAJourUneBille( tabBilles[i] );
+}// -------------------------------------------------------
+function	tracerUneBille		( bille )	{
+//
+//  Tracer la <bille> à sa position
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	cercle( bille.posX , bille.posY , bille.rayon , bille.color );
+}// -------------------------------------------------------
+function	tracerLesBilles		()			{
+//
+//  Tracer toutes les billes du tableau de billes
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  for( var i = 0  ;  i < nbrBilles  ;  i++  )	// pour toutes les billes
+	tracerUneBille( tabBilles[i] );
+}// -------------------------------------------------------
+}
+{// Gerer les Bonus
+	var nbrBonus =10 ;		// Nombre de bonus
+	var tabBonus= null ;	// tableau des <nbrBOnus> Bonus
+function	creerLesBonus		()			{
+//
+//  Créer tous les objets BILLES du monde
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  tabBonus = new Array();// nouveau tableau pour les billes
+  nbrBonus = nbrBriques;	// nouveau tableau pour les billes
+
+  for( var i = 0  ;  i < nbrBonus  ;  i++  )	// créer toutes
+	tabBonus[i] = creerUnbonus() ;			// les billes
+
+	for( var i = 0  ;  i < nbrBriques  ;  i++  ){	// créer toutes
+	tabBriques[i].bonus = tabBonus[i] ;			// les billes
+	tabBonus[i].posX = tabBriques[i].posX + (tabBriques[i].sizeX/2);
+	tabBonus[i].posY = tabBriques[i].posY + (tabBriques[i].sizeY/2);
+	}
+}// -------------------------------------------------------
+function	creerUnbonus		()			{
+//
+//  Créer et Renvoyer une nouvelle bille
+//  Initilisée aléatoirement
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+var obj = new Object();			// allouer un nouvel objet
+	obj.posX =  50 + Math.random() * 300 ;	// position
+	obj.posY =  50 ;
+	obj.vitX = 0   ;	// vitesse
+	obj.vitY = +2  ;
+	obj.rayon=  5 ;	// rayon
+	obj.color = numtocolor(7+obj.type);
+	obj.actif=false;
+	obj.type = Math.floor(1 + Math.random()* 3); 
+	return obj ;
+}// -------------------------------------------------------
+function	miseAJourUnBonus	( bonus )	{
+//
+//  Mettre à jour la <bonus> : position vitesse ...
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	if ( ! bonus.actif) return;
+	//--- Mettre à jour la position
+	bonus.posX = bonus.posX + bonus.vitX ;
+	bonus.posY = bonus.posY + bonus.vitY ;
+
+	//--- Detecter la sortie du cadre
+	if (bonus.posX+bonus.rayon >= canvas1.width )	
+	bonus.vitX = -bonus.vitX ;
+	if (bonus.posY+bonus.rayon >= canvas1.height+25)	
+		//bille.vitY = -bille.vitY ;
+		bonus.actif = true ;
+	if (bonus.posX-bonus.rayon <= 0) 				
+	bonus.vitX = -bonus.vitX ;
+	if (bonus.posY-bonus.rayon <= 0) 				
+	bonus.vitY = -bonus.vitY ;
+}// -------------------------------------------------------
+function	miseAJourLesBonus	()			{
+//
+//  Mettre à jour de toutes les bonus : position vitesse ...
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  for( var i = 0  ;  i < nbrBonus  ;  i++  )	// pour toutes les billes
+	miseAJourUnBonus( tabBonus[i] );
+}// -------------------------------------------------------
+function	tracerUnBonus		( bonus )	{
+//
+//  Tracer la <bonus> à sa position
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//if (!bonus.actif) return;
+
+	rectangle( bonus.posX , bonus.posY , bonus.rayon , bonus.color );
+}// -------------------------------------------------------
+function	tracerLesBonus		()			{
+//
+//  Tracer toutes les Bonus du tableau de billes
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  for( var i = 0  ;  i < nbrBonus  ;  i++  )	// pour toutes les bonuss
+	tracerUnBonus( tabBonus[i] );
+}// -------------------------------------------------------
+}
+{// Gere les briques
+var nbrBriques = 21 ;
+var tabBriques = null ;
+function casserUneBrique(){
+
+  for( var i = 0  ;  i < nbrBriques  ;  i++  )	// créer toutes
+	if (tabBriques[i].actif){
+		tabBriques[i].actif = false;
+		tabBriques[i].bonus.actif = true;
+		return;
+	}
+}
+function	creerLesBriques		()			{
+//
+//  Créer tous les objets BILLES du monde
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  tabBriques = new Array();	// nouveau tableau pour les billes
+
+  for( var i = 0  ;  i < nbrBriques  ;  i++  )	// créer toutes
+	tabBriques[i] = creerUneBrique(i) ;			// les billes
+}// -------------------------------------------------------
+function	creerUneBrique		( num )			{ 
+
+var obj = new Object();		// allouer un nouvel objet
+	obj.sizeX = 50 ;		// vitesse
+	obj.sizeY = 25;
+
+	var col = (num % 7 );
+    var row = Math.floor(num/7)
+        obj.posX = 5 + col * (obj.sizeX+5) ; // Postion X
+        obj.posY = 5 + row * (obj.sizeY+5) ; // Postion X
+
+//obj.color=  Math.floor(Math.random()*8) ;// num couleur
+	obj.color=  0 ;
+	obj.color=  numtocolor(obj.color);		// string color
+	obj.actif = true ;			// brique active au début
+	obj.cptHits = 0 ;			// nbr de touches
+	return obj ;
+}// -------------------------------------------------------
+function	miseAJourUneBrique	( brique )	{
+//
+//  Mettre à jour la <bille> : position vitesse ...
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+}// -------------------------------------------------------
+function	miseAJourLesBriques	()			{
+//
+//  Mettre à jour de toutes les billes : position vitesse ...
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  for( var i = 0  ;  i < nbrBriques  ;  i++  )	// pour toutes les billes
+	miseAJourUneBrique( tabBriques[i] );
+}// -------------------------------------------------------
+function	tracerUneBrique		( brique )	{
+
+	if ( ! brique.actif )	return;		// quitter
+	
+	rectangle(	brique.posX, brique.posY, 
+				brique.sizeX, brique.sizeY ,brique.color );
+}// -------------------------------------------------------
+function	tracerLesBriques	()			{
+
+  for( var i = 0  ;  i < nbrBriques  ;  i++  )	// pour toutes les billes
+	tracerUneBrique( tabBriques[i] );
+}
+}
+{// Gere la raquette
+var laRaquette = null ;
+function	creerUneRaquette		()				{ 
+var obj = new Object();		// allouer un nouvel objet
+	obj.sizeX = 120 ;		// 
+	obj.sizeY = 15;
+    obj.posX = 200 ; // Postion X
+    obj.posY = 280 ; // Postion Y fixe
+
+	obj.color=  'green';		// string color
+	return obj ;
+}// -------------------------------------------------------
+function	miseAJourUneRaquette	( raquette )	{
+}// -------------------------------------------------------
+function	tracerUneRaquette		( raquette )	{
+
+	rectangle(	raquette.posX, raquette.posY, 
+				raquette.sizeX, raquette.sizeY ,raquette.color );
+}
+}
+{ //----TESTER
+function	billeEstDansBrique				( bille, brique ){
+
+	if ( ! brique.actif )	return false;		// quitter
+
+	if ((brique.posX <= bille.posX) 
+	&&  (bille.posX <= (brique.posX+brique.sizeX))
+	&&  (brique.posY <= bille.posY) 
+	&&  (bille.posY <= (brique.posY+brique.sizeY)))
+	 	 return true;
+	else return false ;
+}// -------------------------------------------------------
+function	testerRebondUneBilleUneBrique	( bille, brique ){
+
+	if ( billeEstDansBrique(bille,brique))
+	{ bille.vitY = -bille.vitY ;	// faire rebondir bille
+	
+	  //--- Gérer la destruction progressive de la brique
+	  brique.cptHits++ ;
+	  brique.color = numtocolor(brique.cptHits);
+	  
+	  if ( brique.cptHits >= 3 )
+	  {
+		brique.actif = false;
+		brique.bonus.actif=true;
+	  }
+			// désactiver la brique
+	}
+}// -------------------------------------------------------
+function	testerRebondLesBillesLesBriques ()				{
+//
+//  Tester les rebonds de toutes les billes sur toutes les briques
+//- - - - - - - -  - - - - - - -  - - - - -  - - - - -  -
+  for( var i = 0  ;  i < nbrBilles   ;  i++  )	// les billes
+  for( var j = 0  ;  j < nbrBriques  ;  j++  )	// les briques
+    testerRebondUneBilleUneBrique( tabBilles[i] , tabBriques[j] );
+}// -------------------------------------------------------
+function	billeEstDansRaquette			( bille, raquette ){
+	if ((raquette.posX <= bille.posX) 
+	&&  (bille.posX <= (raquette.posX+raquette.sizeX))
+	&&  (raquette.posY <= bille.posY) 
+	&&  (bille.posY <= (raquette.posY+raquette.sizeY)))
+	 	 return true;
+	else return false ;
+}// -------------------------------------------------------
+function	testerRebondUneBilleUneRaquette	( bille, raquette ){
+
+	if ( billeEstDansRaquette(bille,raquette))
+	{
+		bille.vitY = -bille.vitY ;	// faire rebondir bille
+		// ---
+
+		millieu =raquette.posX + (raquette.sizeX /2);
+		delta = millieu - bille.posX;
+		bille.vitX -= delta/10
+		//tier = raquette.sizeX /3;
+		//if (bille.posX < raquette.posX+tier)
+		//	bille.vitX -= 5 ;
+		//else if (bille.posX > raquette.posX+(2*tier))
+		//	bille.vitX += 5;
+	}
+
+		
+	  
+}// -------------------------------------------------------
+function	testerContactUnBonusUneRaquette	( bonus, raquette,brique ){
+	if (!bonus.actif) return;
+if ( billeEstDansRaquette(bonus,raquette))
+{
+	bonus.actif = false;
+	switch(bonus.type)
+	{
+		case 1 : raquette.sizeX += 10; break;
+		case 2 : raquette.sizeX -= 10; break;
+		case 3 : casserUneBrique(); break;
+	}
+
+}
+
+	
+  
+}// -------------------------------------------------------
+function	testerRebondLesBillesUneRaquette ( raquette )	{
+//
+//  Tester les rebonds de toutes les billes sur la raquette
+//- - - - - - - -  - - - - - - -  - - - - -  - - - - -  -
+  for( var i = 0  ;  i < nbrBilles   ;  i++  )	// les billes
+    testerRebondUneBilleUneRaquette( tabBilles[i] , raquette );
+}// -------------------------------------------------------
+function	testerContactLesBonusUneRaquette ( raquette )	{
+//
+//  Tester les rebonds de toutes les billes sur la raquette
+//- - - - - - - -  - - - - - - -  - - - - -  - - - - -  -
+  for( var i = 0  ;  i < nbrBonus   ;  i++  )	// les billes
+    testerContactUnBonusUneRaquette( tabBonus[i] , raquette );
+}// -------------------------------------------------------
+}
+{ //---Actives
+function	nbrBriquesActives ()	{
+var  nbr = 0 ;
+
+  for( var i = 0  ;  i < nbrBriques ; i++ )	
+    if ( tabBriques[i].actif )	nbr++ ;
+	
+  return nbr ;
+}
+function	nbrBillesActives ()	{
+var  nbr = 0 ;
+
+  for( var i = 0  ;  i < nbrBilles ; i++ )	
+    if ( tabBilles[i].actif )	nbr++ ;
+	
+  return nbr ;
+}
+}
+{ //----Les différentes phases
+	function itererPhase_Init(){
+		creerLeMonde();
+		Phase ='Attente';
+	}
+
+var cptFrames = 0;
+function itererPhase_Attente(){
+		// AFFICHER LE FOND
+		TracerLeMonde();
+	texte ( 'Cliquer pour' , 100,100, 'Aqua');
+	texte ( 'Commencer' , 100,190, 'Aqua');
+}
+function itererPhase_Pause(){
+		// AFFICHER LE FOND
+		
+	texte ( 'Cliquer pour' , 100,100, 'Aqua');
+	texte ( 'Continuer' , 100,190, 'Aqua');
+}
+function itererPhase_Jeu(){
+	miseAJourLesBilles();
+	miseAJourLesBriques();
+	miseAJourLesBonus();
+
+	testerRebondLesBillesLesBriques();
+	testerRebondLesBillesUneRaquette(laRaquette);
+	testerContactLesBonusUneRaquette(laRaquette);
+
+	TracerLeMonde();
+	
+	
+	
+
+	//--Tester condition de sortie
+	if ( nbrBriquesActives() == 0 )	Phase ='Gagner';
+	if ( nbrBillesActives() == 0 )	Phase ='Perdu';
+
+	
+	
+}
+function itererPhase_Gagner(){
+		// AFFICHER LE FOND
+		console.log('itererPhase_Gagner'+123);
+		TracerLeMonde();
+	texte ( 'Gagné ! ' , 100,100, 'Aqua');
+	
+	
+	
+}
+function itererPhase_Perdu(){
+		// AFFICHER LE FOND
+		console.log('itererPhase_Perdu'+123);
+		TracerLeMonde();
+	texte ( 'Perdu ! ' , 100,100, 'Aqua');
+	
+}
+
+
+function	drawFrame()	{
+//
+// Retracer l'image courante du monde
+// Appelé 50 fois par seconde
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+if 		(Phase == 'Init') 		itererPhase_Init();
+else if (Phase == 'Attente') 	itererPhase_Attente();
+else if (Phase == 'Jeu') 		itererPhase_Jeu();
+else if (Phase == 'Gagner') 	itererPhase_Gagner();
+else if (Phase == 'Perdu') 		itererPhase_Perdu();
+else if (Phase == 'Pause') 		itererPhase_Pause();
+
+
+
+
+}
+}
+{// Gerer Mousemove et MouseClick
+var  canvas1_MouseMove_cpt = 0 ;
+/*function	canvas1_MouseMove	( event )	{
+  canvas1_MouseMove_cpt++;
+  
+var ax = event.offsetX ;
+var ay = event.offsetY ;
+
+  //document.title = 'canvas1_mouseMove '+canvas1_MouseMove_cpt+' '+ax+' '+ay ;
+  laRaquette.posX = ax - (laRaquette.sizeX / 2) ;
+  
+
+  //Ne pas sortie la raquete de care
+  if(  laRaquette.posX < 5   )	laRaquette.posX = 5 ;
+  if(  (laRaquette.posX+laRaquette.sizeX) > 400-5 )
+	laRaquette.posX = 400-5-laRaquette.sizeX ;
+
+}*/
+function canvas1_MouseClick(){
+	if 		(Phase =='Attente') Phase = 'Jeu';
+	else if (Phase =='Gagner')  Phase = 'Init';
+	else if (Phase =='Perdu')   Phase = 'Init'; 
+	else if (Phase == 'Pause') 	Phase ='Jeu';
+	else if (Phase == 'Jeu') 	Phase ='Pause';
+	
+	
+}
+}
+function itererClavier (){
+	//
+	//
+	// - - - - - - - - - -  - - - - - - -
+	if (LeftIsOn)  laRaquette.posX -=10 ;
+	if (RightIsOn)  laRaquette.posX +=10 ;
+	//Ne pas sortie la raquete de care
+	if(  laRaquette.posX < 5   )	laRaquette.posX = 5 ;
+    if(  (laRaquette.posX+laRaquette.sizeX) > 400-5 )
+	laRaquette.posX = 400-5-laRaquette.sizeX ;
+
+}
+
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>casse brique</title>
+</head>
+<body onload="body_onLoad()">
+    <h1> Casse-Brique</h1>
+	<div style="width:100%; height:100vh;">    
+		<canvas id="canvas1" width="400" height="500">			
+    		</canvas>
+	</div>
+
+</body>
+</html>

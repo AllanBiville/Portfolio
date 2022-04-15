@@ -242,19 +242,31 @@ margin-top:30px;
 }
 /* --------------------------------------------------------------------------------------------------- */
 /* Projets */
-.projets1 {
+.projets {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   border:1px solid black;
-  margin:0 auto;
-  width:70%;
+  width:80%;
+  margin:15px auto;
+  display:block;
 }
-.projets1:hover {
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 10px 15px 15px rgba(0, 0, 0, 0.600);
-  animation: headShake 3s;
+.projets h1{
+  font-size: 20px;
+
 }
-#image_projet-edt{
-  width:100%
+.projets-image{
+  width:50%;
+}
+.projets-bouton {
+  padding: 10px 15px;
+  display: inline-block;
+  background-color:black;
+  color: white;
+  text-decoration: none;
+  margin: 10px auto;
+}
+.projets-bouton:hover{
+  background-color: hsla(0, 0%, 0%, 0.920);
 }
 /* --------------------------------------------------------------------------------------------------- */
 /* Documentation */
@@ -336,6 +348,10 @@ footer{
 }
 footer p, footer h1{
   padding:10px;
+}
+footer a{
+  text-decoration: none;
+  color:white;
 }
 
 .reveal{
