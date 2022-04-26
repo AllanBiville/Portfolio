@@ -361,7 +361,7 @@ footer a{
 }
 
 .reveal.active{
-  transform: translateY(0px);
+  transform: translateY(0);
   opacity: 1;
   background-color:white;
 }
