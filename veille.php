@@ -31,9 +31,13 @@
 <h1 style='text-align:center;'>Types de recherches</h4>
   <h4 style='padding:0px 30px;'>- Alertes Google par mail (Google Alerts)</h4>
   <h4 style='padding:0px 30px;'>- NewsLetters par mail (Le Monde Informatique)</h4>
-  <h4 style='padding:0px 30px;'>- Recherche WEB</h4>
+  <h4 style='padding:0px 30px;'>- Recherche WEB <br/><ul>Exemple : <li><a href="https://leclerc-web.fr/les-failles-des-sites-web/" target="_blank">https://leclerc-web.fr/les-failles-des-sites-web/</a></li></ul></h4>
+
 <?php
+
+
 echo "<h1 style='text-align:center;'>FLUX RSS</h1>";
+
 echo "<h1 style='padding:0px 20px;'>L'informaticien</h1>";
 $url = "https://www.linformaticien.com/magazine/cybersecurite.html?format=feed&type=rss"; 
 $rss = simplexml_load_file($url);
@@ -116,7 +120,16 @@ foreach ($rss->channel->item as $item){
 }
 echo '</ul>';
 
-
+echo "<h1 style='padding:0px 20px;'>Devidia</h1>";
+$url = "https://www.devidia.net/les-5-failles-de-securite-les-plus-courantes/feed/"; 
+$rss = simplexml_load_file($url);
+echo '<ul>';
+foreach ($rss->channel->item as $item){
+ $datetime = date_create($item->pubDate);
+ $date = date_format($datetime, 'd M Y, H\hi');
+ echo '<li><a href="'.$item->link.'">'.$item->title.'</a> ('.$date.')</li>';
+}
+echo '</ul>';
 ?>
 </main>
 <footer>
